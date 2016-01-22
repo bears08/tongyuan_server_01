@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-core/regular_finance_manager_core.iml" filepath="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-core/regular_finance_manager_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-server/regular_finance_manager_server.iml" filepath="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-server/regular_finance_manager_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongyuan_server.iml" filepath="$PROJECT_DIR$/tongyuan_server.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongyuan_server_core/tongyuan_server_core.iml" filepath="$PROJECT_DIR$/tongyuan_server_core/tongyuan_server_core.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongyuan_server_manager_web/tongyuan_server_manager_web.iml" filepath="$PROJECT_DIR$/tongyuan_server_manager_web/tongyuan_server_manager_web.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tongyuan_server_trans_web/tongyuan_server_trans_web.iml" filepath="$PROJECT_DIR$/tongyuan_server_trans_web/tongyuan_server_trans_web.iml" />
+    </modules>
+  </component>
+</project>
+

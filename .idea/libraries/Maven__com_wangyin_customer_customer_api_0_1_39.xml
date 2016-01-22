@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="Maven: com.wangyin.customer:customer-api:0.1.39">
+    <CLASSES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wangyin/customer/customer-api/0.1.39/customer-api-0.1.39.jar!/" />
+    </CLASSES>
+    <JAVADOC>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wangyin/customer/customer-api/0.1.39/customer-api-0.1.39-javadoc.jar!/" />
+    </JAVADOC>
+    <SOURCES>
+      <root url="jar://$MAVEN_REPOSITORY$/com/wangyin/customer/customer-api/0.1.39/customer-api-0.1.39-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

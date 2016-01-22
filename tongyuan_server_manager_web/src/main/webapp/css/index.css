@@ -1,0 +1,41 @@
+@CHARSET "UTF-8";
+/*Css Reset*/
+body,ul,ol,li,p,h1,h2,h3,h4,h5,h6,form,fieldset,table,td,img,div{margin:0;padding:0;border:0;}
+body{background:#fff;color:#555;font-size:12px;margin-top:0;font-family:"微软雅黑","宋体",Arial,Verdana,arial,serif;}
+ul,ol{list-style-type:none;}
+select,input,img,select{vertical-align:middle;}
+a{text-decoration:none;color:#000;}
+a:hover{color:#36F;}
+.Clear{clear:both;font-size:0;height:0;line-height:0;}
+
+
+
+/*搜索查询 Start*/
+.customerSearch {margin:10px 0;padding:10px 10px;width:1000px;border:#d6e2cd 1px solid;background:#f4f9ef;}
+.shortSearch {margin:10px 0;padding:10px 10px;width:700px;border:#d6e2cd 1px solid;background:#f4f9ef;}
+.customerSearch table tr td{height:25px;line-height:25px;font-size:12px;}
+.custsearchInput{width:150px;border:1px solid #CDDBC2;height:20px;line-height:20px;}
+.custsearchSelect{border:1px solid #CDDBC2;}
+.customerSearchInput {width:150px;}
+.greenBtn {color:#fff;width:84px;height:36px;border:none;cursor:pointer;background:url(../images/greenBtn.png) no-repeat;}
+.blueBtn {color:#fff;width:84px;height:36px;border:none;cursor:pointer;background:url(../images/blueBtn.png) no-repeat;}
+.greenBtnPay {color:#fff;width:130px;height:48px;border:none;cursor:pointer;background:url(../images/greenBtnPay.png) no-repeat;font-weight:bold;}
+.yellowBtnPay {color:#fff;width:150px;height:48px;border:none;cursor:pointer;background:url(../images/yellowBtnPay.png) no-repeat;font-weight:bold;}
+.topUpSuccess {font-size:14px;width:430px;height:150px;overflow:hidden;background:url(../images/topUpSuccessBg.png) no-repeat;}
+.customerInfoOperate {}
+.customerInfoOperate table tr td {height:30px;line-height:30px;text-align:center;}
+.customerInfo3{padding:10px 10px;}
+/*搜索查询  End*/
+
+/*添加start*/
+.customerAdd {margin:10px 0;padding:10px 10px;border:#d6e2cd 1px solid;background:#f4f9ef;}
+.customerAdd table tr td{height:25px;line-height:25px;font-size:12px;}
+/*添加end*/
+
+/*弹出层搜索查询 Start*/
+.customerSearch1 {margin:10px 0;padding:10px 10px;width:655px;border:#d6e2cd 1px solid;background:#f4f9ef;}
+.customerSearch1 table tr td{height:25px;line-height:25px;font-size:12px;}
+/*弹出层搜索查询 end*/
+
+/**隐藏标签**/
+.taghidden{display:none;}

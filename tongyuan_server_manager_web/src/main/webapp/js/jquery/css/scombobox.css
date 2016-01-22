@@ -1,0 +1,10 @@
+html,body{font-size:12px;}
+input[type=text][scombo-name].scombo-box:hover{border:1px solid #A4BED4;}
+.scombo-box,input.scombo-box,input[type=text][scombo-name].scombo-box{cursor:default;height:20px;padding:0px 20px 0px 0px;margin:0px;border:1px solid #A4BED4;background:transparent url('images/scombo_arrow.png') no-repeat right center;}
+.scombo-panel{overflow:auto;position:absolute;display:hidden;height:150px;border: 1px solid #99BBE8;background:white;z-index:60000}
+.scombo-panel .scombo-item{cursor:default;display:block;padding:2px;white-space:nowrap;line-height:14px;height:14px;}
+.scombo-panel .hover{background-color:#39f;}
+.scombo-panel .selected{background-color:#FBEC88;}
+.scombo-panel .scombo-item span.key{font-weight:bold;color:#660099;}
+div.multiple-combo div.scombo-item{padding-left:16px;background-image:url(images/checkbox_0.gif);background-position:0px 2px;background-repeat:no-repeat;}
+div.multiple-combo div.selected{background-image:url(images/checkbox_1.gif);}

@@ -1,0 +1,16 @@
+
+.exlist{background-color:#E7F0FF; padding:5px;width:680px;min-height:200px;height:auto;font-family:"微软雅黑"; -webkit-box-shadow:4px 4px 5px #333;/*webkit*/ -moz-box-shadow:4px 4px 5px #333;/*firefox*/     box-shadow:4px 4px 5px #333;/*opera或ie9*/ }
+#tt{width:700px;height:342px;}
+#title{width:200px;margin:20px auto;}
+#title legend{ font-size:26px; }
+div.exlist_title{ background-color:#E7F0FF; width:680px; height:20px; } 
+fieldset{ width:90%; border:1px dashed #666; margin:40px auto; } 
+legend{ background-color:#E7F0FF; height:120px; height:30px;color:#630;font-weight:bolder;font-size:20px;line-height:30px;margin:-20px 10px 10px;padding:0 10px;}
+div.row{margin:10px;padding:5px;}
+div.row label{height:20px;font-size:16px;line-height:20px;margin:0 10px;}
+input.txt{border:none;	background-color:#E7F0FF;color:#333; width:150px; height:20px; margin:0 10px; font-size:16px; line-height:20px; border-bottom:1px solid #565656;}
+input.txt:focus{ color:#333; border-bottom:1px solid #F00;}
+select{ width:100px; }
+input.btn{ 	width:50px; height:20px; color:#000008B; background-color: transparent;border:0;padding:0;}
+	 
+

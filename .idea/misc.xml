@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="EntryPointsManager">
+    <entry_points version="2.0" />
+  </component>
+  <component name="FrameworkDetectionExcludesConfiguration">
+    <file type="web" url="file://$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-server" />
+    <file type="web" url="file://$PROJECT_DIR$/../../h5/tyuan/branches/1.0.0/p2p-front-web" />
+    <file type="web" url="file://$PROJECT_DIR$/tongyuan_server_manager_web" />
+    <file type="web" url="file://$PROJECT_DIR$/tongyuan_server_trans_web" />
+  </component>
+  <component name="IdProvider" IDEtalkID="EBB5AFB04A70D098B4013677AA5786B6" />
+  <component name="MavenProjectsManager">
+    <option name="originalFiles">
+      <list>
+        <option value="$PROJECT_DIR$/pom.xml" />
+        <option value="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-core/pom.xml" />
+        <option value="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-server/pom.xml" />
+      </list>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_6" assert-keyword="true" jdk-15="true" project-jdk-name="1.7" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/out" />
+  </component>
+  <component name="SvnBranchConfigurationManager">
+    <option name="myConfigurationMap">
+      <map>
+        <entry key="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-core">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+        <entry key="$PROJECT_DIR$/../../h5/03_0016_000000_00007190-manager-server">
+          <value>
+            <SvnBranchConfiguration>
+              <option name="trunkUrl" value="" />
+            </SvnBranchConfiguration>
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="mySupportsUserInfoFilter" value="true" />
+  </component>
+</project>
+
