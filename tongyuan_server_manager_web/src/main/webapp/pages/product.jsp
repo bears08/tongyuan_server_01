@@ -84,8 +84,8 @@
                                 <td width="40px">${product.sort}</td>
                                 <td width="40px">${product.operatorName}</td>
 								<td width="100px" style="line-height: 30px;">
-									<input type="button" class="greenBtn" value="修改" onclick="modifyProduct('${product.prodId}')">
-									<input type="button" class="greenBtn" style="visibility:${product.status == 0 ? '' : 'hidden'};" value="下架" onclick="deletePro('${product.prodId}')">
+									<input type="button" class="greenBtn" value="修改" onclick="modifyProduct('${product.id}')">
+									<%--<input type="button" class="greenBtn" style="visibility:${product.state == 0 ? '' : 'hidden'};" value="下架" onclick="deletePro('${product.id}')">--%>
 								</td>
 							</tr>
 						</c:forEach>

@@ -60,7 +60,14 @@ var _menus = {
                             "menuname": "商品管理",
                             "icon": "icon-tree-level",
                             "url": "/product/list.do"
-                        }/*,
+                        },
+                        {
+                            "menuid": "1002002",
+                            "menuname": "商品分类",
+                            "icon": "icon-tree-level",
+                            "url": "/category/list.do"
+                        }
+                        /*,
                          {
                          "menuid": "1002002",
                          "menuname": "产品贴息管理",

@@ -1,8 +1,9 @@
-CREATE TABLE IF NOT EXISTS `ty_product_category` (
+CREATE TABLE IF NOT EXISTS `ty_category` (
   `category_id` int(12)  AUTO_INCREMENT,
-  `category_name` varchar(500)  COMMENT '商品名称',
+  `category_name` varchar(200)  COMMENT '商品分类名称',
+  `category_level` varchar(50)  COMMENT '商品分类等级',
   `category_state` varchar(32)  COMMENT '状态,上架在售,售罄,下架',
-  `category_score` int(12)  COMMENT '商品评分',
+  `category_score` int(12)  COMMENT '商品分类评分',
   `category_parent_id` int(12)  COMMENT '商品分类父ID',
   `category_parent_name` varchar(50)  COMMENT '商品分类父名称',
   `category_pic` varchar(200)  COMMENT '图片',
@@ -13,8 +14,8 @@ CREATE TABLE IF NOT EXISTS `ty_product_category` (
   `category_sold_start` datetime  COMMENT '开始出售时间',
   `category_sold_end` datetime  COMMENT '停止出售时间',
 --  产品上架地区或店铺
-  `category_is_recommend` int(12) default '0' COMMENT '是否推荐,推荐的商品出现在今日里面',
-  `category_sort` int(10)  COMMENT '商品排序字段',
+  `category_is_recommend` int(12) default '0' COMMENT '是否推荐',
+  `category_sort` int(10)  COMMENT '商品分类排序字段',
   `operator_id` int(12)  COMMENT '操作员ID',
   `operator_name` varchar(50)  COMMENT '操作员名称',
 

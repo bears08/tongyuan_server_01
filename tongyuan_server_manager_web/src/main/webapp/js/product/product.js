@@ -82,8 +82,8 @@ function addPro(){
 function newDialog(title){
     $('#productDialog').dialog({
         title: title,
-        width: 500,
-        height: 650,
+        width: 600,
+        height: 300,
         closed: false,
         cache: false,
         modal: true,

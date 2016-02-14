@@ -7,7 +7,7 @@
     <!--&lt;!&ndash; 读取属性文件 &ndash;&gt;-->
     <!--<context:property-placeholder location="classpath:runtimecfg/db.properties" ignore-unresolvable="true"/>-->
     <!--&lt;!&ndash;只处理在xml中申明了的bean&ndash;&gt;-->
-    <!--&lt;!&ndash;<context:annotation-config />&ndash;&gt;-->
+    <context:annotation-config />
 
     <!-- 把标记了@Controller注解的类转换为bean，处理在xml中申明的bean，并且处理代码中annotation申明的bean -->
     <context:component-scan base-package="com.tongyuan.core.*">

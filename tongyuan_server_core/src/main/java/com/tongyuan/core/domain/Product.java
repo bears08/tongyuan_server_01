@@ -42,7 +42,7 @@ import java.util.Date;
 public class Product  implements Serializable{
     private Integer id;
     private String name;
-    private BigDecimal price;
+    private float price;
     private float discount;
     private String state;
     private Integer num;
@@ -82,11 +82,11 @@ public class Product  implements Serializable{
         this.name = name;
     }
 
-    public BigDecimal getPrice() {
+    public float getPrice() {
         return price;
     }
 
-    public void setPrice(BigDecimal price) {
+    public void setPrice(float price) {
         this.price = price;
     }
 
