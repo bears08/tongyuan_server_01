@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by hanfei on 16/1/30.
@@ -18,5 +19,10 @@ public class CategoryService {
     public int insert(Category category){
         categoryDao.insert(category);
         return 0;
+    }
+
+    public List<Category> selectAll(){
+//        categoryDao.
+        return null;
     }
 }

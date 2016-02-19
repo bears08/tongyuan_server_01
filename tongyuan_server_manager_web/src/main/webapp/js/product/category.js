@@ -127,41 +127,45 @@ function updateAction(prodId){
     });
 }
 
+//function addCategory(){
+//    alert('suansuan');
+//}
+
 function addAction(){
-    var isvalidate = validataInput();
+//    var isvalidate = validataInput();
 //    if(isvalidate==false){
 //        $.messager.alert("系统提示：","请填写完整的表单项");
 //        return;
 //    }
-    var name = $("#name").val();
-    var cycle = $("#cycle").numberbox("getValue");
-    var annualrate = $("#annualrate").val();
-    var flowdesc = $("#flowdesc").val();
-    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
-    var guaranteeSafe = $("#guaranteeSafe").val();
-    var isForeign = $("#isForeign").combobox("getValue");
-    var badge = $("#badge").val();
-    var sort = $("#sort").val();
-    var isNewUser = $("#isNewUser").combobox("getValue");
-    var isGold = $("#isGold").combobox("getValue");
-    var isPromotion = $("#isPromotion").combobox("getValue");
-    var sellStartTime = $("#sellStartTime").val();
-    var singleMaxAmount = $("#singleMaxAmount").val();
-    var param = {"name": name};
-//    $.post("/product/add.do", param,
-//        function(data){
-//            $('#productDialog').panel("close");
-//            $.messager.show({
-//                title:'系统提示: ',
-//                msg:"产品信息更新"+data,
-//                timeout:2000,
-//                showType:'slide'
-//            });
-//            window.setTimeout(function(){
-//                window.location.reload();
-//            },2000)
-//        });
-    $.post("/product/add.do", param,function(data){
+
+//    alert("jiuweihu:九尾狐");
+    var pname = $("#name").val();
+    var picSmall = $("#picSmall").val();
+    var summary = $("#summary").val();
+//    var cycle = $("#cycle").numberbox("getValue");
+//    var annualrate = $("#annualrate").val();
+//    var flowdesc = $("#flowdesc").val();
+//    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
+//    var guaranteeSafe = $("#guaranteeSafe").val();
+//    var isForeign = $("#isForeign").combobox("getValue");
+//    var badge = $("#badge").val();
+//    var sort = $("#sort").val();
+//    var isNewUser = $("#isNewUser").combobox("getValue");
+//    var isGold = $("#isGold").combobox("getValue");
+//    var isPromotion = $("#isPromotion").combobox("getValue");
+//    var sellStartTime = $("#sellStartTime").val();
+//    var singleMaxAmount = $("#singleMaxAmount").val();
+    alert(pname);
+    var param = {"name": pname};
+//    var mydata = '{"name":'+name+'}';
+    var mydata = '{"name":"熊熊"}';
+    $.ajax({
+        type: "post",
+        url: "/category/add.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        dataType: 'json',
+        success: function (data, status, jqXHR) {
              $.messager.show({
 				title:'系统提示: ',
 				msg:data.msg,
@@ -174,7 +178,30 @@ function addAction(){
 	           	   window.location.reload();
 	           },2000)
            }
+        },
+        error: function (jqXHR, status) {
+            alert("cuo wu");
+        }
     });
+//    $.ajaxSetup({
+//        contentType : 'application/json'
+//    });
+//    $.post("/category/add.do", param,function(data){
+//        alert("suansuan:"+data.msg);
+//        alert("tiantian:"+data.flag);
+//             $.messager.show({
+//				title:'系统提示: ',
+//				msg:data.msg,
+//				timeout:2000,
+//				showType:'slide'
+//			});
+//           if(data.flag){
+//        	   $('#categoryDialog').panel("close");
+//        	   window.setTimeout(function(){
+//	           	   window.location.reload();
+//	           },2000)
+//           }
+//    });
 
 }
 

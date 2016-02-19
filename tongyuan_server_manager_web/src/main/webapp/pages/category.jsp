@@ -147,7 +147,7 @@
 				<tr height="30">
 					<td align="center" colspan="2">
 						&nbsp;&nbsp;&nbsp;&nbsp;
-						<input type="button" value="确定" id="confirmBtn" class="greenBtn" />
+						<input type="button" value="确定" id="confirmBtn" class="greenBtn" onclick="addCategory()"/>
 						<input type="button" value="取消" id="cancelBtn" onclick="$('#categoryDialog').dialog('close');" class="greenBtn" />
 					</td>
 				</tr>

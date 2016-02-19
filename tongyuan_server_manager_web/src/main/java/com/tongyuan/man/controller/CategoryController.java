@@ -3,6 +3,7 @@ package com.tongyuan.man.controller;
 import com.tongyuan.core.domain.Category;
 import com.tongyuan.core.domain.Product;
 import com.tongyuan.core.service.CategoryService;
+import com.tongyuan.man.dto.Result;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -23,8 +24,7 @@ import java.util.List;
 @Controller
 public class CategoryController {
 
-    @Resource
-    @Qualifier("categoryService")
+    @Resource(name = "categoryService")
     private CategoryService categoryService;
 
     @RequestMapping("/category/list.do")
@@ -39,6 +39,7 @@ public class CategoryController {
 //        product.setDetail("白菜得秋气最重，补肺，酸补肝.");
 //        productList.add(product);
 //        model.addAttribute(productList);
+
         List<Category> categoryList = new ArrayList<Category>();
         Category category = new Category();
         category.setId(876);
@@ -49,11 +50,11 @@ public class CategoryController {
         return "category";
     }
 
-    @ResponseBody
+
     @RequestMapping("/category/add.do")
-    public String add(@RequestBody Category category ,HttpServletRequest request){
+    public @ResponseBody Result add(@RequestBody Category category ,HttpServletRequest request){
         if (category != null && category.getName() != null){
-            System.out.println("--------------11111-----");
+            System.out.println("--------------11111-----"+category.getName());
             categoryService.insert(category);
         }
         String name = request.getParameter("name");
@@ -64,7 +65,10 @@ public class CategoryController {
         c.setName("平肝补肝");
         c.setOperatorName("阎锡山");
         categoryService.insert(c);
-        return "{'flag':'true'}";
+        Result result= new Result();
+        result.setFlag(true);
+        result.setMsg("suansuan_tiantian");
+        return result;
     }
 
 

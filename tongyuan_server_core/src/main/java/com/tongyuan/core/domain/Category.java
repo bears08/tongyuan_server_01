@@ -156,20 +156,12 @@ public class Category implements Serializable {
         this.operatorId = operatorId;
     }
 
-    public Integer getSort() {
+    public int getSort() {
         return sort;
     }
 
-    public void setSort(Integer sort) {
-        this.sort = sort;
-    }
-
-    public Integer getOperatorId() {
+    public int getOperatorId() {
         return operatorId;
-    }
-
-    public void setOperatorId(Integer operatorId) {
-        this.operatorId = operatorId;
     }
 
     public String getOperatorName() {

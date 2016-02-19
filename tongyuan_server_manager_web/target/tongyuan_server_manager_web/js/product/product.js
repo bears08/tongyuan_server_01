@@ -133,7 +133,8 @@ function addAction(){
 //        $.messager.alert("系统提示：","请填写完整的表单项");
 //        return;
 //    }
-    var name = $("#name").val();
+//    var name = $("#name").val();
+    var name = "xiaoxiongxiong";
     var cycle = $("#cycle").numberbox("getValue");
     var annualrate = $("#annualrate").val();
     var flowdesc = $("#flowdesc").val();
@@ -147,6 +148,7 @@ function addAction(){
     var isPromotion = $("#isPromotion").combobox("getValue");
     var sellStartTime = $("#sellStartTime").val();
     var singleMaxAmount = $("#singleMaxAmount").val();
+
     var param = {"name": name};
 //    $.post("/product/add.do", param,
 //        function(data){
@@ -162,6 +164,7 @@ function addAction(){
 //            },2000)
 //        });
     $.post("/product/add.do", param,function(data){
+            alert("tiantian:"+data);
              $.messager.show({
 				title:'系统提示: ',
 				msg:data.msg,
