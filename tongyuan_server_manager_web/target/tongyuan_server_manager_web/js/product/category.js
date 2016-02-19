@@ -138,10 +138,17 @@ function addAction(){
 //        return;
 //    }
 
-//    alert("jiuweihu:九尾狐");
-    var pname = $("#name").val();
+    var name = $("#name").val();
+    var state = $("#state").combobox("getValue");
+    var pic = $("#pic").val();
     var picSmall = $("#picSmall").val();
     var summary = $("#summary").val();
+    var detail = $("#detail").val();
+    var soldStart = $("#soldStart").val();
+    var soldEnd = $("#soldEnd").val();
+    var sort = $("#sort").val();
+    var isRecommend = $("#isRecommend").combobox("getValue");
+
 //    var cycle = $("#cycle").numberbox("getValue");
 //    var annualrate = $("#annualrate").val();
 //    var flowdesc = $("#flowdesc").val();
@@ -156,9 +163,8 @@ function addAction(){
 //    var sellStartTime = $("#sellStartTime").val();
 //    var singleMaxAmount = $("#singleMaxAmount").val();
     alert(pname);
-    var param = {"name": pname};
-//    var mydata = '{"name":'+name+'}';
-    var mydata = '{"name":"熊熊"}';
+    var param = {"name": pname,"state":state,"pic":pic,"picSmall":picSmall,"summary":summary,"detail":detail,
+    "soldStart":soldStart,"soldEnd":soldEnd,"sort":sort,"isRecommend":isRecommend};
     $.ajax({
         type: "post",
         url: "/category/add.do",
