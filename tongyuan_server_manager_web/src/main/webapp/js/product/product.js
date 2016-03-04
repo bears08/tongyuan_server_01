@@ -30,29 +30,32 @@ function deletePro(prodId){
 	});  
 };
 
-function modifyProduct(prodId){
+function modifyProduct(product){
     emptyInput();
-    $.getJSON($("#rootPath").val()+"/finance/getProductById?prodId="+prodId, function(json){
-        $("#proname").val(json.name);
-        $("#cycle").numberbox("setValue",json.investCycle);
-        $("#annualrate").val(json.annualRate);
-        $("#flowdesc").val(json.flowDesc);
-        $("#minimumBuyPrice").numberbox("setValue",json.minimumBuyPrice);
-        $("#guaranteeSafe").val(json.guaranteeSafe);
-        $("#prodId").val(json.prodId);
-        $("#isForeign").combobox("setValue",json.isForeign);
-        $("#badge").val(json.badge);
-        $("#sort").val(json.sort);
-        $("#isNewUser").combobox("setValue",json.isNewUser);
-        $("#isGold").combobox("setValue",json.isGold);
-        $("#isPromotion").combobox("setValue",json.isPromotion);
-        $("#sellStartTime").datetimebox('setValue', formatDate(new Date(json.sellStartTime)));
-        $("#singleMaxAmount").val(json.singleMaxAmount);
-    });
+    $("#id").val(product.id);
+    $("#name").val(product.name);
+    $("#price").val(product.price);
+    $("#discount").val(product.discount);
+    $("#state").combobox("setValue",product.state);
+    $("#num").val(product.num);
+    $("#categoryId").combobox("setValue",product.categoryId);
+    $("#categoryId").combobox("setText",product.categoryName);
+    $("#pic").val(product.pic);
+    $("#picSmall").val(product.picSmall);
+    $("#function").val(product.function);
+    $("#element").val(product.element);
+    $("#summary").val(product.summary);
+    $("#detail").val(product.detail);
+    $('#soldStart').datetimebox('setValue',product.soldStart)  ;
+    $("#soldEnd").datetimebox("setValue",product.soldEnd)  ;
+    $("#sort").val(product.sort);
+    $("#isRecommend").combobox("setValue",product.isRecommend);
+    $("#isReserve").combobox("setValue",product.isReserve);
+
     newDialog("修改产品信息");
-    $("#prodId").attr("readonly","readonly");
+    $("#id").attr("readonly","readonly");
     $("#productDialog table").show();
-    $("#confirmBtn").attr("onclick","updateAction(\""+prodId+"\")");
+    $("#confirmBtn").attr("onclick","updateAction()");
 };
 
 function formatDate(now) {
@@ -91,39 +94,59 @@ function newDialog(title){
     });
 };
 
-function updateAction(prodId){
+function updateAction(){
     var isvalidate = validataInput();
-    if(isvalidate==false){
-        alert("请填写完整数据！");
-        return;
-    }
-    var proname = $("#proname").val();
-    var cycle = $("#cycle").numberbox("getValue");
-    var annualrate = $("#annualrate").val();
-    var flowdesc = $("#flowdesc").val();
-    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
-    var guaranteeSafe = $("#guaranteeSafe").val();
-    var isForeign = $("#isForeign").combobox("getValue");
-    var badge = $("#badge").val();
+//    if(isvalidate==false){
+//        $.messager.alert("系统提示：","请填写完整的表单项");
+//        return;
+    var id = $("#id").val();
+    var name = $("#name").val();
+    var price = $("#price").val();
+    var discount = $("#discount").val();
+    var state = $("#state").combobox("getValue");
+    var num = $("#num").val();
+    var categoryId = $("#categoryId").combobox("getValue");
+    var categoryName = $("#categoryId").combobox("getText");
+    var unit = $("#unit").combobox("getText");
+    var pic = $("#pic").val();
+    var picSmall = $("#picSmall").val();
+    var functions = $("#function").val();
+    var element = $("#element").val();
+    var summary = $("#summary").val();
+    var detail = $("#detail").val();
+    var soldStart = $('#soldStart').datetimebox('getValue')  ;
+    var soldEnd = $("#soldEnd").datetimebox("getValue")  ;
     var sort = $("#sort").val();
-    var isNewUser = $("#isNewUser").combobox("getValue");
-    var isGold = $("#isGold").combobox("getValue");
-    var isPromotion = $("#isPromotion").combobox("getValue");
-    var sellStartTime = $("#sellStartTime").datetimebox('getValue');
-    var singleMaxAmount = $("#singleMaxAmount").val();
-    var param = {"prodId":prodId, "name": proname, "investCycle": cycle, "annualRate": annualrate, "flowDesc": flowdesc, "minimumBuyPrice": minimumBuyPrice,"guaranteeSafe":guaranteeSafe,"isForeign":isForeign,"badge":badge,"sort":sort,"isNewUser":isNewUser,"isGold":isGold,"isPromotion":isPromotion, "sellStartTime":sellStartTime,"singleMaxAmount":singleMaxAmount};
-    $.post($("#rootPath").val()+"/finance/updateprod", param,
-        function(data){
-        	 $('#productDialog').panel("close");
-             $.messager.show({
-				title:'系统提示: ',
-				msg:"产品信息更新"+data,
-				timeout:2000,
-				showType:'slide'
-			});
-		    window.setTimeout(function(){
-		       window.location.reload();
-		    },2000)
+    var isReserve = $("#isReserve").combobox("getValue");
+    var isRecommend = $("#isRecommend").combobox("getValue");
+
+    var param = {"id":id,"name": name,"price":price,"discount":discount,"state":state,"num":num,
+        "categoryId":categoryId,"categoryName":categoryName,
+        "unit":unit,"pic":pic,"picSmall":picSmall,"function":functions,"element":element,"summary":summary,"detail":detail,
+        "soldStart":soldStart,"soldEnd":soldEnd,"sort":sort,"isRecommend":isRecommend,"isReserve":isReserve};
+    $.ajax({
+        type: "post",
+        url: "/product/update.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        dataType: 'json',
+        success: function (data, status, jqXHR) {
+            $.messager.show({
+                title:'系统提示: ',
+                msg:data.msg,
+                timeout:2000,
+                showType:'slide'
+            });
+            if(data.flag){
+                $('#productDialog').panel("close");
+                window.setTimeout(function(){
+                    window.location.reload();
+                },2000)
+            }
+        },
+        error: function (jqXHR, status) {
+            alert("cuo wu");
+        }
     });
 }
 
@@ -132,51 +155,53 @@ function addAction(){
 //    if(isvalidate==false){
 //        $.messager.alert("系统提示：","请填写完整的表单项");
 //        return;
-//    }
-//    var name = $("#name").val();
-    var name = "xiaoxiongxiong";
-    var cycle = $("#cycle").numberbox("getValue");
-    var annualrate = $("#annualrate").val();
-    var flowdesc = $("#flowdesc").val();
-    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
-    var guaranteeSafe = $("#guaranteeSafe").val();
-    var isForeign = $("#isForeign").combobox("getValue");
-    var badge = $("#badge").val();
+    var name = $("#name").val();
+    var price = $("#price").val();
+    var discount = $("#discount").val();
+    var state = $("#state").combobox("getValue");
+    var num = $("#num").val();
+    var categoryId = $("#categoryId").combobox("getValue");
+    var categoryName = $("#categoryId").combobox("getText");
+    var unit = $("#unit").combobox("getText");
+    var pic = $("#pic").val();
+    var picSmall = $("#picSmall").val();
+    var functions = $("#function").val();
+    var element = $("#element").val();
+    var summary = $("#summary").val();
+    var detail = $("#detail").val();
+    var soldStart = $('#soldStart').datetimebox('getValue')  ;
+    var soldEnd = $("#soldEnd").datetimebox("getValue")  ;
     var sort = $("#sort").val();
-    var isNewUser = $("#isNewUser").combobox("getValue");
-    var isGold = $("#isGold").combobox("getValue");
-    var isPromotion = $("#isPromotion").combobox("getValue");
-    var sellStartTime = $("#sellStartTime").val();
-    var singleMaxAmount = $("#singleMaxAmount").val();
+    var isReserve = $("#isReserve").combobox("getValue");
+    var isRecommend = $("#isRecommend").combobox("getValue");
 
-    var param = {"name": name};
-//    $.post("/product/add.do", param,
-//        function(data){
-//            $('#productDialog').panel("close");
-//            $.messager.show({
-//                title:'系统提示: ',
-//                msg:"产品信息更新"+data,
-//                timeout:2000,
-//                showType:'slide'
-//            });
-//            window.setTimeout(function(){
-//                window.location.reload();
-//            },2000)
-//        });
-    $.post("/product/add.do", param,function(data){
-            alert("tiantian:"+data);
-             $.messager.show({
-				title:'系统提示: ',
-				msg:data.msg,
-				timeout:2000,
-				showType:'slide'
-			});
-           if(data.flag){
-        	   $('#productDialog').panel("close");
-        	   window.setTimeout(function(){
-	           	   window.location.reload();
-	           },2000)
-           }
+    var param = {"name": name,"price":price,"discount":discount,"state":state,"num":num,
+        "categoryId":categoryId,"categoryName":categoryName,
+        "unit":unit,"pic":pic,"picSmall":picSmall,"function":functions,"element":element,"summary":summary,"detail":detail,
+        "soldStart":soldStart,"soldEnd":soldEnd,"sort":sort,"isRecommend":isRecommend,"isReserve":isReserve};
+    $.ajax({
+        type: "post",
+        url: "/product/add.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        dataType: 'json',
+        success: function (data, status, jqXHR) {
+            $.messager.show({
+                title:'系统提示: ',
+                msg:data.msg,
+                timeout:2000,
+                showType:'slide'
+            });
+            if(data.flag){
+                $('#productDialog').panel("close");
+                window.setTimeout(function(){
+                    window.location.reload();
+                },2000)
+            }
+        },
+        error: function (jqXHR, status) {
+            alert("cuo wu");
+        }
     });
 
 }
@@ -195,9 +220,9 @@ function emptyInput(){
 }
 
 function validataInput(){
-    if($("#proname").val()=="" ||  $("#minimumBuyPrice").numberbox("getValue")==""||$("#annualrate").val()==""||
-        $("#flowdesc").val()==""||$("#cycle").numberbox("getValue")==""){
-        return false;
-    }
+//    if($("#proname").val()=="" ||  $("#minimumBuyPrice").numberbox("getValue")==""||$("#annualrate").val()==""||
+//        $("#flowdesc").val()==""||$("#cycle").numberbox("getValue")==""){
+//        return false;
+//    }
 }
 

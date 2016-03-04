@@ -33,7 +33,7 @@
 		<div id="showFormDiv" class="main"
 			style="width: 99%; text-align: center">
 			<table border="1" cellpadding="3" cellspacing="0"
-				style="margin: 80px auto auto;" id="bigtable">
+				style="margin: 10px auto auto;" id="bigtable">
 				<thead>
 					<th>编号</th>
 					<th>名称</th>
@@ -58,7 +58,7 @@
 							<tr>
 								<td width="40px">${category.id}</td>
 								<td width="40px">${category.name}</td>
-								<td width="40px">${category.state}</td>
+                                <td>${category.state == 0 ? "下架":"上架"}</td>
 								<td width="40px">${category.score}</td>
 								<td width="40px">${category.pic}</td>
 								<td width="40px">${category.picSmall}</td>
@@ -72,7 +72,11 @@
 								<td width="120px"><fmt:formatDate value="${category.createDate}" type="date" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td width="120px"><fmt:formatDate value="${category.updateDate}" type="date" pattern="yyyy-MM-dd HH:mm:ss"/></td>
 								<td width="100px" style="line-height: 30px;">
-									<input type="button" class="greenBtn" value="修改" onclick="modifyCategory('${category.id}')">
+									<input type="button" class="greenBtn" value="修改" onclick="modifyCategory({id:'${category.id}',name:'${category.name}',
+                                            state:'${category.state}',pic:'${category.pic}',picSmall:'${category.picSmall}',
+                                            summary:'${category.summary}',detail:'${category.detail}',soldStart:'${category.soldStart}',
+                                            soldEnd:'${category.soldEnd}',sort:'${category.sort}',isRecommend:'${category.isRecommend}'})">
+									<%--<input type="button" class="greenBtn" value="修改" onclick="modifyCategory({id:'${category.id}',name:'${category.name}'})">--%>
 									<%--<input type="button" class="greenBtn" style="visibility:${category.state == 0 ? '' : 'hidden'};" value="下架" onclick="deletePro('${category.id}')">--%>
 								</td>
 							</tr>
@@ -91,6 +95,10 @@
 			<table
 				style="display: none; width: 99%; border-collapse: separate; border-spacing: 10px;">
 				<tr height="30">
+                    <td align="right">编号：</td>
+					<td><input id="id" class="easyui-validatebox" readonly></td>
+				</tr>
+                <tr height="30">
 					<td align="right">名称：</td>
 					<td><input id="name" class="easyui-validatebox"></td>
 				</tr>
@@ -122,13 +130,13 @@
                 <tr height="30">
                     <td align="right">开卖时间：</td>
                     <td>
-                        <input id="soldStart" name="time6" type="text" class="easyui-datetimebox"/>
+                        <input id="soldStart"  type="text" class="easyui-datetimebox"/>
                     </td>
                 </tr>
                 <tr height="30">
                     <td align="right">停卖时间：</td>
                     <td>
-                        <input id="soldEnd" name="time6" type="text" class="easyui-datetimebox"/>
+                        <input id="soldEnd"  type="text" class="easyui-datetimebox"/>
                     </td>
                 </tr>
                 <tr height="30">

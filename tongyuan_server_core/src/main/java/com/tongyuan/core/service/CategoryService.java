@@ -20,9 +20,18 @@ public class CategoryService {
         categoryDao.insert(category);
         return 0;
     }
+    public int update(Category category){
+        categoryDao.update(category);
+        return 0;
+    }
 
     public List<Category> selectAll(){
-//        categoryDao.
-        return null;
+        return categoryDao.selectAll();
     }
+
+    public List<Category> selectAllOnSell(){
+        return categoryDao.selectAllOnSell();
+    }
+
+
 }

@@ -30,29 +30,25 @@ function deletePro(prodId){
 	});  
 };
 
-function modifyCategory(prodId){
+function modifyCategory(category){
+//alert(category.name);
     emptyInput();
-    $.getJSON($("#rootPath").val()+"/finance/getProductById?prodId="+prodId, function(json){
-        $("#proname").val(json.name);
-        $("#cycle").numberbox("setValue",json.investCycle);
-        $("#annualrate").val(json.annualRate);
-        $("#flowdesc").val(json.flowDesc);
-        $("#minimumBuyPrice").numberbox("setValue",json.minimumBuyPrice);
-        $("#guaranteeSafe").val(json.guaranteeSafe);
-        $("#prodId").val(json.prodId);
-        $("#isForeign").combobox("setValue",json.isForeign);
-        $("#badge").val(json.badge);
-        $("#sort").val(json.sort);
-        $("#isNewUser").combobox("setValue",json.isNewUser);
-        $("#isGold").combobox("setValue",json.isGold);
-        $("#isPromotion").combobox("setValue",json.isPromotion);
-        $("#sellStartTime").datetimebox('setValue', formatDate(new Date(json.sellStartTime)));
-        $("#singleMaxAmount").val(json.singleMaxAmount);
-    });
-    newDialog("修改产品信息");
-    $("#prodId").attr("readonly","readonly");
-    $("#productDialog table").show();
-    $("#confirmBtn").attr("onclick","updateAction(\""+prodId+"\")");
+
+    $("#id").val(category.id);
+    $("#name").val(category.name);
+    $("#state").combobox("setValue",category.state);
+    $("#pic").val(category.pic);
+    $("#picSmall").val(category.picSmall);
+    $("#summary").val(category.summary);
+    $("#detail").val(category.detail);
+    $('#soldStart').datetimebox('setValue',category.soldStart)  ;
+    $("#soldEnd").datetimebox("setValue",category.soldEnd)  ;
+    $("#sort").val(category.sort);
+    $("#isRecommend").combobox("setValue",category.isRecommend);
+    newDialog("修改产品分类信息");
+//    $("#prodId").attr("readonly","readonly");
+    $("#categoryDialog table").show();
+    $("#confirmBtn").attr("onclick","updateAction()");
 };
 
 function formatDate(now) {
@@ -72,10 +68,6 @@ function addCategory(){
     $("#categoryDialog table").show();
     emptyInput();
     newDialog("添加产品分类");
-//    $("#addProdId").hide();
-//    $("#isNewUser").combobox("setValue","1");
-//    $("#isGold").combobox("setValue","1");
-//    $("#isPromotion").combobox("setValue","1");
     $("#confirmBtn").attr("onclick","addAction()");
 };
 
@@ -91,45 +83,52 @@ function newDialog(title){
     });
 };
 
-function updateAction(prodId){
-    var isvalidate = validataInput();
-    if(isvalidate==false){
-        alert("请填写完整数据！");
-        return;
-    }
-    var proname = $("#proname").val();
-    var cycle = $("#cycle").numberbox("getValue");
-    var annualrate = $("#annualrate").val();
-    var flowdesc = $("#flowdesc").val();
-    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
-    var guaranteeSafe = $("#guaranteeSafe").val();
-    var isForeign = $("#isForeign").combobox("getValue");
-    var badge = $("#badge").val();
+function updateAction(){
+//    var isvalidate = validataInput();
+//    if(isvalidate==false){
+//        alert("请填写完整数据！");
+//        return;
+//    }
+    var id = $("#id").val();
+    var name = $("#name").val();
+    var state = $("#state").combobox("getValue");
+    var pic = $("#pic").val();
+    var picSmall = $("#picSmall").val();
+    var summary = $("#summary").val();
+    var detail = $("#detail").val();
+    var soldStart = $('#soldStart').datetimebox('getValue')  ;
+    var soldEnd = $("#soldEnd").datetimebox("getValue")  ;
     var sort = $("#sort").val();
-    var isNewUser = $("#isNewUser").combobox("getValue");
-    var isGold = $("#isGold").combobox("getValue");
-    var isPromotion = $("#isPromotion").combobox("getValue");
-    var sellStartTime = $("#sellStartTime").datetimebox('getValue');
-    var singleMaxAmount = $("#singleMaxAmount").val();
-    var param = {"prodId":prodId, "name": proname, "investCycle": cycle, "annualRate": annualrate, "flowDesc": flowdesc, "minimumBuyPrice": minimumBuyPrice,"guaranteeSafe":guaranteeSafe,"isForeign":isForeign,"badge":badge,"sort":sort,"isNewUser":isNewUser,"isGold":isGold,"isPromotion":isPromotion, "sellStartTime":sellStartTime,"singleMaxAmount":singleMaxAmount};
-    $.post($("#rootPath").val()+"/finance/updateprod", param,
-        function(data){
-        	 $('#productDialog').panel("close");
-             $.messager.show({
-				title:'系统提示: ',
-				msg:"产品信息更新"+data,
-				timeout:2000,
-				showType:'slide'
-			});
-		    window.setTimeout(function(){
-		       window.location.reload();
-		    },2000)
+    var isRecommend = $("#isRecommend").combobox("getValue");
+
+    var param = {"id":id,"name": name,"state":state,"pic":pic,"picSmall":picSmall,"summary":summary,"detail":detail,
+        "soldStart":soldStart,"soldEnd":soldEnd,"sort":sort,"isRecommend":isRecommend};
+    $.ajax({
+        type: "post",
+        url: "/category/update.do",
+        contentType: "application/json",
+        data: JSON.stringify(param),
+        dataType: 'json',
+        success: function (data, status, jqXHR) {
+            $.messager.show({
+                title:'系统提示: ',
+                msg:data.msg,
+                timeout:2000,
+                showType:'slide'
+            });
+            if(data.flag){
+                $('#categoryDialog').panel("close");
+                window.setTimeout(function(){
+                    window.location.reload();
+                },2000)
+            }
+        },
+        error: function (jqXHR, status) {
+            alert("cuo wu");
+        }
     });
 }
 
-//function addCategory(){
-//    alert('suansuan');
-//}
 
 function addAction(){
 //    var isvalidate = validataInput();
@@ -144,26 +143,12 @@ function addAction(){
     var picSmall = $("#picSmall").val();
     var summary = $("#summary").val();
     var detail = $("#detail").val();
-    var soldStart = $("#soldStart").val();
-    var soldEnd = $("#soldEnd").val();
+    var soldStart = $('#soldStart').datetimebox('getValue')  ;
+    var soldEnd = $("#soldEnd").datetimebox("getValue")  ;
     var sort = $("#sort").val();
     var isRecommend = $("#isRecommend").combobox("getValue");
 
-//    var cycle = $("#cycle").numberbox("getValue");
-//    var annualrate = $("#annualrate").val();
-//    var flowdesc = $("#flowdesc").val();
-//    var minimumBuyPrice = $("#minimumBuyPrice").numberbox("getValue");
-//    var guaranteeSafe = $("#guaranteeSafe").val();
-//    var isForeign = $("#isForeign").combobox("getValue");
-//    var badge = $("#badge").val();
-//    var sort = $("#sort").val();
-//    var isNewUser = $("#isNewUser").combobox("getValue");
-//    var isGold = $("#isGold").combobox("getValue");
-//    var isPromotion = $("#isPromotion").combobox("getValue");
-//    var sellStartTime = $("#sellStartTime").val();
-//    var singleMaxAmount = $("#singleMaxAmount").val();
-    alert(pname);
-    var param = {"name": pname,"state":state,"pic":pic,"picSmall":picSmall,"summary":summary,"detail":detail,
+    var param = {"name": name,"state":state,"pic":pic,"picSmall":picSmall,"summary":summary,"detail":detail,
     "soldStart":soldStart,"soldEnd":soldEnd,"sort":sort,"isRecommend":isRecommend};
     $.ajax({
         type: "post",
@@ -189,25 +174,6 @@ function addAction(){
             alert("cuo wu");
         }
     });
-//    $.ajaxSetup({
-//        contentType : 'application/json'
-//    });
-//    $.post("/category/add.do", param,function(data){
-//        alert("suansuan:"+data.msg);
-//        alert("tiantian:"+data.flag);
-//             $.messager.show({
-//				title:'系统提示: ',
-//				msg:data.msg,
-//				timeout:2000,
-//				showType:'slide'
-//			});
-//           if(data.flag){
-//        	   $('#categoryDialog').panel("close");
-//        	   window.setTimeout(function(){
-//	           	   window.location.reload();
-//	           },2000)
-//           }
-//    });
 
 }
 

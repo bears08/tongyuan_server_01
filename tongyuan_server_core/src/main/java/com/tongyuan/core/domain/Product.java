@@ -38,6 +38,7 @@ CREATE TABLE IF NOT EXISTS `ty_product` (
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.Date;
+import java.util.List;
 
 public class Product  implements Serializable{
     private Integer id;
@@ -58,12 +59,12 @@ public class Product  implements Serializable{
     private String detail;
     private Date soldStart;
     private Date soldEnd;
-    private Boolean isReserve;
-    private Boolean isRecommend;
+    private int isReserve;
+    private int isRecommend;
     private Integer sort;
     private Integer operatorId;
     private String operatorName;
-    private Date creatDate;
+    private Date createDate;
     private Date updateDate;
 
     public Integer getId() {
@@ -202,19 +203,19 @@ public class Product  implements Serializable{
         this.soldEnd = soldEnd;
     }
 
-    public Boolean getIsReserve() {
+    public int getIsReserve() {
         return isReserve;
     }
 
-    public void setIsReserve(Boolean isReserve) {
+    public void setIsReserve(int isReserve) {
         this.isReserve = isReserve;
     }
 
-    public Boolean getIsRecommend() {
+    public int getIsRecommend() {
         return isRecommend;
     }
 
-    public void setIsRecommend(Boolean isRecommend) {
+    public void setIsRecommend(int isRecommend) {
         this.isRecommend = isRecommend;
     }
 
@@ -226,12 +227,13 @@ public class Product  implements Serializable{
         this.sort = sort;
     }
 
-    public Date getCreatDate() {
-        return creatDate;
+    public Date getCreateDate() {
+        return createDate;
     }
 
-    public void setCreatDate(Date creatDate) {
-        this.creatDate = creatDate;
+
+    public void setCreateDate(Date createDate) {
+        this.createDate = createDate;
     }
 
     public Date getUpdateDate() {

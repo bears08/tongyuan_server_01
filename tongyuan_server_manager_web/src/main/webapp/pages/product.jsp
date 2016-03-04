@@ -24,16 +24,19 @@
 <link rel="stylesheet" href="<%=root%>/js/easyui.1.2.6/themes/default/easyui.css" type="text/css">
 <link rel="stylesheet" href="<%=root%>/css/custom.css" type="text/css">
 <script type="text/javascript" src="<%=root%>/js/product/product.js?p=<%=System.currentTimeMillis()%>"></script>
+    <script type="text/javascript">
+        var s = "suansuan:";
+//        type="hidden"
+    </script>
 </head>
 
 <body>
-	<input type="hidden" id="rootPath"
-		value="<%=request.getContextPath()%>" />
+
 	<div class="main" style="width: 99%">
 		<div id="showFormDiv" class="main"
 			style="width: 99%; text-align: center">
 			<table border="1" cellpadding="3" cellspacing="0"
-				style="margin: 80px auto auto;" id="bigtable">
+				style="margin: 10px auto auto;" id="bigtable">
 				<thead>
 					<th>编号</th>
 					<th>名称</th>
@@ -84,7 +87,13 @@
                                 <td width="40px">${product.sort}</td>
                                 <td width="40px">${product.operatorName}</td>
 								<td width="100px" style="line-height: 30px;">
-									<input type="button" class="greenBtn" value="修改" onclick="modifyProduct('${product.id}')">
+									<input type="button" class="greenBtn" value="修改" onclick="modifyProduct({id:'${product.id}',name:'${product.name}',
+                                            price:'${product.price}',discount:'${product.discount}',state:'${product.state}',
+                                            num:'${product.num}',categoryId:'${product.categoryId}',categoryName:'${product.categoryName}',
+                                            unit:'${product.unit}',pic:'${product.pic}',picSmall:'${product.picSmall}',
+                                            element:'${product.element}',functions:'${product.function}',
+                                            summary:'${product.summary}',detail:'${product.detail}',soldStart:'${product.soldStart}',
+                                            soldEnd:'${product.soldEnd}',sort:'${product.sort}',isRecommend:'${product.isRecommend}'})">
 									<%--<input type="button" class="greenBtn" style="visibility:${product.state == 0 ? '' : 'hidden'};" value="下架" onclick="deletePro('${product.id}')">--%>
 								</td>
 							</tr>
@@ -102,6 +111,10 @@
 		<div id="productDialog">
 			<table
 				style="display: none; width: 99%; border-collapse: separate; border-spacing: 10px;">
+                <tr height="30">
+                    <td align="right">编号：</td>
+                    <td><input id="id" class="easyui-validatebox" readonly></td>
+                </tr>
 				<tr height="30">
 					<td align="right">名称：</td>
 					<td><input id="name" class="easyui-validatebox"></td>
@@ -133,8 +146,11 @@
                     <td align="right">分类：</td>
                     <td>
                         <select id="categoryId" class="easyui-combobox" style="width: 155px;"  panelHeight='auto'>
-                            <option value="0">清肝明目</option>
-                            <option value="1">健胃补脾</option>
+                            <c:if test="${!empty categoryList && fn:length(categoryList)>0}">
+                                <c:forEach items="${categoryList}" var="category">
+                                    <option value="${category.id}">${category.name}</option>
+                                </c:forEach>
+                            </c:if>
                         </select>
                     </td>
                 </tr>
@@ -142,8 +158,8 @@
                     <td align="right">单位：</td>
                     <td>
                         <select id="unit" class="easyui-combobox" style="width: 155px;"  panelHeight='auto'>
-                            <option value="0">份</option>
-                            <option value="1">件</option>
+                            <option value="份">份</option>
+                            <option value="件">件</option>
                         </select>
                     </td>
                 </tr>

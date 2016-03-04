@@ -2,9 +2,18 @@
 <html>
 <head>
     <title></title>
-    <script type="text/javascript">
-        var data = {"flag":"true","msg":"suansuantiantian"} ;
-        alert("suansuan:"+data.flag);
+    <script type=text/javascript>
+        $("#id").val(product.id);
+        $("#name").val(product.name);
+        $("#state").combobox("setValue",product.state);
+        $("#pic").val(product.pic);
+        $("#picSmall").val(product.picSmall);
+        $("#summary").val(product.summary);
+        $("#detail").val(product.detail);
+        $('#soldStart').datetimebox('setValue',product.soldStart)  ;
+        $("#soldEnd").datetimebox("setValue",product.soldEnd)  ;
+        $("#sort").val(product.sort);
+        $("#isRecommend").combobox("setValue",product.isRecommend);
     </script>
 </head>
 <body>

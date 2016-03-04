@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
@@ -27,47 +28,33 @@ public class CategoryController {
     @Resource(name = "categoryService")
     private CategoryService categoryService;
 
-    @RequestMapping("/category/list.do")
+    @RequestMapping(value = "/category/list.do")
     public String list(HttpServletRequest request, HttpServletResponse response,Model model){
-//        List<Product> productList = new ArrayList<Product>();
-//        Product product = new Product();
-//        product.setId(1234);
-//        product.setName("醋溜白菜");
-////        DecimalFormat decimalFormat = new DecimalFormat("0.00");
-//        product.setPrice(12.20f);
-//        product.setCategoryName("清湿清热");
-//        product.setDetail("白菜得秋气最重，补肺，酸补肝.");
-//        productList.add(product);
-//        model.addAttribute(productList);
-
-        List<Category> categoryList = new ArrayList<Category>();
-        Category category = new Category();
-        category.setId(876);
-        category.setName("健胃补脾");
-        category.setOperatorName("菲菲");
-        categoryList.add(category);
+        System.out.println("-----------suansuan-------------------");
+        List<Category> categoryList = categoryService.selectAll();
         model.addAttribute(categoryList);
         return "category";
     }
 
 
-    @RequestMapping("/category/add.do")
+    @RequestMapping(value = "/category/add.do",method = RequestMethod.POST)
     public @ResponseBody Result add(@RequestBody Category category ,HttpServletRequest request){
         if (category != null && category.getName() != null){
-            System.out.println("--------------11111-----"+category.getName());
             categoryService.insert(category);
         }
-        String name = request.getParameter("name");
-        if(name != null){
-            System.out.println("-------------22222---"+name);
-        }
-        Category c = new Category();
-        c.setName("平肝补肝");
-        c.setOperatorName("阎锡山");
-        categoryService.insert(c);
         Result result= new Result();
         result.setFlag(true);
-        result.setMsg("suansuan_tiantian");
+        result.setMsg("添加成功");
+        return result;
+    }
+    @RequestMapping(value = "/category/update.do",method = RequestMethod.POST)
+    public @ResponseBody Result update(@RequestBody Category category ,HttpServletRequest request){
+        if (category != null && category.getName() != null){
+            categoryService.update(category);
+        }
+        Result result= new Result();
+        result.setFlag(true);
+        result.setMsg("更新成功");
         return result;
     }
 
